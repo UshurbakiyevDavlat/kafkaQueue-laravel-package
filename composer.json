@@ -1,0 +1,21 @@
+{
+    "name": "davlatbekushurbakiyev/kafka-queue",
+    "description": "Package for apache kafka connection, wrapper of rdkafka library",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^8.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Davlatbekushurbakiyev\\KafkaQueue\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ушурбакиев Давлатбек Алимжанович",
+            "email": "davlatbek.ushurbakiyev@ffin.kz"
+        }
+    ],
+    "minimum-stability": "stable"
+}
