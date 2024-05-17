@@ -38,12 +38,13 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
      */
     public function push($job, $data = '', $queue = null): void
     {
+        $topic = $queue ?? env('KAFKA_TOPIC');
         $topicConf = new TopicConf();
         $topicConf->set('message.timeout.ms', (string)self::MESSAGE_TIMEOUT);
         $topicConf->set('request.required.acks', (string)self::REQ_ACKS);
         $topicConf->set('request.timeout.ms', (string)self::REQ_TIMEOUT);
 
-        $topic = $this->producer->newTopic($queue ?? env('KAFKA_TOPIC'), $topicConf);
+        $topic = $this->producer->newTopic($topic, $topicConf);
         $topic->produce(RD_KAFKA_PARTITION_UA, self::PARTITION, serialize($job));
         $this->producer->flush(static::REQ_TIMEOUT);
     }
@@ -68,6 +69,8 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
     {
         $topic = $queue ?? env('KAFKA_TOPIC');
         var_dump('Start to subscribe on:' . $topic . ' topic');
+        var_dump('Start to subscribe on:' . $queue . ' topic');
+        var_dump('Start to subscribe on:' . env('KAFKA_TOPIC') . ' topic');
 
         $this->consumer->subscribe([$topic]);
         $message = $this->consumer->consume(self::CONSUME_TIME);
