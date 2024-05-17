@@ -36,7 +36,7 @@ class KafkaConnector implements ConnectorInterface
         $conf->set('sasl.password', $config['sasl.password']);
 
         $conf->setDrMsgCb(
-            function (Producer $producer, Message $message): void {
+            function ($kafka, Message $message): void {
                 if ($message->err !== RD_KAFKA_RESP_ERR_NO_ERROR) {
                     throw new Exception($message->errstr());
                 }
@@ -46,7 +46,7 @@ class KafkaConnector implements ConnectorInterface
         $conf->set('log_level', (string)LOG_DEBUG);
         $conf->set('debug', 'all');
         $conf->setLogCb(
-            function (Producer $producer, int $level, string $facility, string $message): void {
+            function ($kafka, int $level, string $facility, string $message): void {
                 Log::debug('kafka debug', ['message' => $message]);
             }
         );
