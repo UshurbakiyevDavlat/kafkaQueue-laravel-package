@@ -6,6 +6,7 @@ namespace Davlatbekushurbakiyev\KafkaQueue;
 
 use Exception;
 use Illuminate\Queue\Queue;
+use RdKafka\TopicConf;
 
 class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
 {
