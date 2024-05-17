@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Davlatbekushurbakiyev\Kafka;
+namespace Kafka;
 
 use Exception;
 use Illuminate\Queue\Queue;
