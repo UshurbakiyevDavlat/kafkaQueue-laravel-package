@@ -8,6 +8,7 @@ use Illuminate\Queue\Connectors\ConnectorInterface;
 use Illuminate\Support\Facades\Log;
 use RdKafka\Conf;
 use RdKafka\KafkaConsumer;
+use RdKafka\Message;
 use RdKafka\Producer;
 
 class KafkaConnector implements ConnectorInterface
