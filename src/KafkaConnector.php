@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Kafka;
+namespace Davlatbekushurbakiyev\KafkaQueue;
 
 use Illuminate\Queue\Connectors\ConnectorInterface;
 use Illuminate\Support\Facades\Log;
 use RdKafka\Conf;
 use RdKafka\KafkaConsumer;
+use RdKafka\Producer;
 
 class KafkaConnector implements ConnectorInterface
 {

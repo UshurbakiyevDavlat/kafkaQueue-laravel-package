@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kafka;
+namespace Davlatbekushurbakiyev\KafkaQueue;
 
 use Exception;
 use Illuminate\Queue\Queue;
@@ -18,10 +18,22 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
     {
     }
 
+    public function setConnection()
+    {
+    }
+
     public function size($queue = null)
     {
     }
 
+    /**
+     * Producer push method
+     *
+     * @param $job
+     * @param $data
+     * @param $queue
+     * @return void
+     */
     public function push($job, $data = '', $queue = null): void
     {
         $topicConf = new TopicConf();
@@ -42,7 +54,12 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
     {
     }
 
+
     /**
+     * Consumer pop method
+     *
+     * @param $queue
+     * @return void
      * @throws Exception
      */
     public function pop($queue = null): void
@@ -56,10 +73,10 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
                 $job->handle();
                 break;
             case RD_KAFKA_RESP_ERR__PARTITION_EOF:
-                echo "No more messages; will wait for more\n";
+                var_dump("No more messages; will wait for more\n");
                 break;
             case RD_KAFKA_RESP_ERR__TIMED_OUT:
-                echo "Timed out\n";
+                var_dump("Timed out\n");
                 break;
             default:
                 throw new Exception($message->errstr(), $message->err);
