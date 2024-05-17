@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Davlatbekushurbakiyev\KafkaQueue;
+namespace Davlatbekushurbakiyev\Kafka;
 
 use Illuminate\Queue\Connectors\ConnectorInterface;
 use Illuminate\Support\Facades\Log;

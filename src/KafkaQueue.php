@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Davlatbekushurbakiyev\KafkaQueue;
+namespace Davlatbekushurbakiyev\Kafka;
 
 use Exception;
 use Illuminate\Queue\Queue;
