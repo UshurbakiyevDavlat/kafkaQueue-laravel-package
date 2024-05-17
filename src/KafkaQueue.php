@@ -68,9 +68,6 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
     public function pop($queue = null): void
     {
         $topic = $queue ?? env('KAFKA_TOPIC');
-        var_dump('Start to subscribe on:' . $topic . ' topic');
-        var_dump('Start to subscribe on:' . $queue . ' topic');
-        var_dump('Start to subscribe on:' . env('KAFKA_TOPIC') . ' topic');
 
         $this->consumer->subscribe([$topic]);
         $message = $this->consumer->consume(self::CONSUME_TIME);
