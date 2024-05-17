@@ -14,6 +14,7 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
     private const MESSAGE_TIMEOUT = 30000;
     private const REQ_ACKS = -1;
     private const PARTITION = 0;
+    private const CONSUME_TIME = 120 * 1000;
 
     public function __construct(private $producer, private $consumer)
     {
@@ -65,8 +66,8 @@ class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
      */
     public function pop($queue = null): void
     {
-        $this->consumer->subscribe(['default']);
-        $message = $this->consumer->consume(120 * 1000);
+        $this->consumer->subscribe([$queue ?? env('KAFKA_TOPIC')]);
+        $message = $this->consumer->consume(self::CONSUME_TIME);
 
         switch ($message->err) {
             case RD_KAFKA_RESP_ERR_NO_ERROR:
