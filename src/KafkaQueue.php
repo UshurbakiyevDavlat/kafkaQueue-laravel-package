@@ -10,7 +10,7 @@ use RdKafka\TopicConf;
 
 class KafkaQueue extends Queue implements \Illuminate\Contracts\Queue\Queue
 {
-    private const REQ_TIMEOUT = 5000;
+    private const REQ_TIMEOUT = 8000;
     private const MESSAGE_TIMEOUT = 30000;
     private const REQ_ACKS = -1;
     private const PARTITION = 0;
